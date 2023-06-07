@@ -1,4 +1,5 @@
 import { Player } from "./Entities/Circle"
+import { Obstacle } from "./Entities/Obstacle"
 
 export class Game {
   canvas = document.getElementById("canvas") as HTMLCanvasElement
@@ -11,10 +12,20 @@ export class Game {
   fps = 60
   interval = 1000 / this.fps
   player = new Player(this)
+  obstaclesAmount = 100
+  obstacles: Obstacle[] = []
 
   constructor() {
     this.canvas.width = this.width
     this.canvas.height = this.height
+    this.createObstacles()
+  }
+
+  createObstacles() {
+    for (let i = 0; i < this.obstaclesAmount; i++) {
+      this.obstacles.push(new Obstacle(this))
+    }
+
   }
 
   animate = () => {
@@ -23,8 +34,10 @@ export class Game {
 
     if (this.delta >= this.interval) {
       this.context.clearRect(0, 0, this.width, this.height)
+      this.obstacles.forEach((obstacle) => {
+        obstacle.draw()
+      })
       this.player.draw()
-
       this.then = this.now
     }
 
