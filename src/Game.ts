@@ -1,3 +1,5 @@
+import { Player } from "./Entities/Circle"
+
 export class Game {
   canvas = document.getElementById("canvas") as HTMLCanvasElement
   context = this.canvas.getContext("2d")!
@@ -8,6 +10,7 @@ export class Game {
   delta: number | null = null
   fps = 60
   interval = 1000 / this.fps
+  player = new Player(this)
 
   constructor() {
     this.canvas.width = this.width
@@ -19,7 +22,8 @@ export class Game {
     this.delta = Date.now() - this.then
 
     if (this.delta >= this.interval) {
-
+      this.context.clearRect(0, 0, this.width, this.height)
+      this.player.draw()
 
       this.then = this.now
     }
