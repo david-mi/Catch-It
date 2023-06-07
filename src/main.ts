@@ -7,4 +7,5 @@ game.animate()
 game.canvas.addEventListener("mousemove", handleMouseMove)
 function handleMouseMove({ offsetX, offsetY }: MouseEvent) {
   game.player.update({ x: offsetX, y: offsetY })
+  game.player.handleCollision(game.obstacles)
 }

@@ -1,10 +1,12 @@
 import type { Game } from "../Game"
+import { Obstacle } from "./Obstacle"
+import { checkCircleCollision } from "../helpers/checkCircleCollision"
 
 export class Player {
   radius = 5
   x: number
   y: number
-  colliding = false
+  collisionTarget: Obstacle | null = null
 
   constructor(public game: Game) {
     this.x = this.game.width + this.radius
@@ -14,6 +16,11 @@ export class Player {
   update({ x, y }: { x: number, y: number }) {
     this.x = x
     this.y = y
+  }
+
+  handleCollision(targets: Obstacle[]) {
+    this.collisionTarget = checkCircleCollision(this, targets)
+    this.draw()
   }
 
   draw() {
