@@ -1,4 +1,4 @@
-import { Player } from "./Entities/Circle"
+import { Player } from "./Entities/Player"
 import { Obstacle } from "./Entities/Obstacle"
 
 export class Game {
