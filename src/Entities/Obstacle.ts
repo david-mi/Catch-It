@@ -5,6 +5,7 @@ export class Obstacle {
   radius = Math.random() * 10 + 10
   x: number
   y: number
+  private _color = "black"
 
   constructor(public game: Game) {
     let isCircleColliding: null | Obstacle
@@ -16,8 +17,19 @@ export class Obstacle {
     } while (isCircleColliding)
   }
 
+  get color() {
+    return this._color
+  }
+
+  set color(color) {
+    this.game.context.save()
+    this._color = color
+    this.game.context.restore()
+  }
+
   draw() {
     this.game.context.beginPath();
+    this.game.context.fillStyle = this.color
     this.game.context.arc(
       this.x,
       this.y,

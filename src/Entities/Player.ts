@@ -6,7 +6,7 @@ export class Player {
   radius = 5
   x: number
   y: number
-  collisionTarget: Obstacle | null = null
+  touchedTarget: Obstacle | null = null
 
   constructor(public game: Game) {
     this.x = this.game.width + this.radius
@@ -19,7 +19,19 @@ export class Player {
   }
 
   handleCollision(targets: Obstacle[]) {
-    this.collisionTarget = checkCircleCollision(this, targets)
+    const previousTouchedTarget = this.touchedTarget
+    this.touchedTarget = checkCircleCollision(this, targets)
+
+    if (this.touchedTarget) {
+      if (previousTouchedTarget !== null && this.touchedTarget !== previousTouchedTarget) {
+        previousTouchedTarget.color = "black"
+      }
+
+      this.touchedTarget.color = "red"
+    } else if (previousTouchedTarget) {
+      previousTouchedTarget.color = "black"
+    }
+
     this.draw()
   }
 
