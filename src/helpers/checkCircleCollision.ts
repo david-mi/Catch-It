@@ -3,7 +3,7 @@ import type { Obstacle } from "../Entities/Obstacle"
 
 type Circle = Player | Obstacle
 
-export function checkCircleCollision(circle: Circle, targetCircles: Obstacle[]) {
+export function checkCircleCollision(circle: Circle, targetCircles: Obstacle[], minGap = 0) {
   for (const targetCircle of targetCircles) {
     const xMax = Math.max(circle.x, targetCircle.x)
     const xMin = Math.min(circle.x, targetCircle.x)
@@ -18,7 +18,7 @@ export function checkCircleCollision(circle: Circle, targetCircles: Obstacle[]) 
     const squaredSum = xLengthSquared + yLengthSquared
     const hypotenuse = Math.sqrt(squaredSum)
 
-    const radiusSum = circle.radius + targetCircle.radius
+    const radiusSum = circle.radius + targetCircle.radius + minGap
     if (radiusSum >= hypotenuse) {
       return targetCircle
     }

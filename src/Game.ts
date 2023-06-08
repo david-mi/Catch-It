@@ -23,7 +23,7 @@ export class Game {
 
   createObstacles() {
     for (let i = 0; i < this.obstaclesAmount; i++) {
-      this.obstacles.push(new Obstacle(this))
+      this.obstacles.push(new Obstacle(this, this.player))
     }
 
   }

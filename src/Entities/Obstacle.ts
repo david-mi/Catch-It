@@ -1,5 +1,6 @@
 import type { Game } from "../Game"
 import { checkCircleCollision } from "../helpers/checkCircleCollision"
+import { Player } from "./Player"
 
 export class Obstacle {
   radius = Math.random() * 10 + 10
@@ -7,13 +8,13 @@ export class Obstacle {
   y: number
   private _color = "black"
 
-  constructor(public game: Game) {
+  constructor(public game: Game, public player: Player) {
     let isCircleColliding: null | Obstacle
 
     do {
       this.x = Math.random() * (game.width - this.radius * 2) + this.radius
       this.y = Math.random() * (game.height - this.radius * 2) + this.radius
-      isCircleColliding = checkCircleCollision(this, game.obstacles)
+      isCircleColliding = checkCircleCollision(this, game.obstacles, this.player.diameter + 2)
     } while (isCircleColliding)
   }
 

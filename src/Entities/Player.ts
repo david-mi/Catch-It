@@ -4,6 +4,7 @@ import { checkCircleCollision } from "../helpers/checkCircleCollision"
 
 export class Player {
   radius = 5
+  diameter = this.radius * 2
   x: number
   y: number
   touchedTarget: Obstacle | null = null
