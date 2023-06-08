@@ -4,15 +4,15 @@ import { Obstacle } from "./Entities/Obstacle"
 export class Game {
   canvas = document.getElementById("canvas") as HTMLCanvasElement
   context = this.canvas.getContext("2d")!
-  width = 500
-  height = 500
+  width = 800
+  height = 800
   then = Date.now()
   now: number | null = null
   delta: number | null = null
   fps = 60
   interval = 1000 / this.fps
   player = new Player(this)
-  obstaclesAmount = 100
+  obstaclesAmount = 200
   obstacles: Obstacle[] = []
 
   constructor() {
