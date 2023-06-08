@@ -11,7 +11,7 @@ export class Game {
   delta: number | null = null
   fps = 60
   interval = 1000 / this.fps
-  player = new Player(this)
+  player = new Player(this, { color: "#2ecc71" })
   obstaclesAmount = 200
   obstacles: Obstacle[] = []
 

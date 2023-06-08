@@ -2,6 +2,10 @@ import type { Game } from "../Game"
 import { Obstacle } from "./Obstacle"
 import { checkCircleCollision } from "../helpers/checkCircleCollision"
 
+interface PlayerOptions {
+  color: string
+}
+
 export class Player {
   radius = 5
   diameter = this.radius * 2
@@ -9,7 +13,7 @@ export class Player {
   y: number
   touchedTarget: Obstacle | null = null
 
-  constructor(public game: Game) {
+  constructor(public game: Game, public options: PlayerOptions) {
     this.x = this.game.width + this.radius
     this.y = this.game.height + this.radius
   }
@@ -38,6 +42,7 @@ export class Player {
 
   draw() {
     this.game.context.beginPath();
+    this.game.context.fillStyle = this.options.color
     this.game.context.arc(
       this.x,
       this.y,
