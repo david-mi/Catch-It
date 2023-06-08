@@ -14,8 +14,8 @@ export class Player {
   touchedTarget: Obstacle | null = null
 
   constructor(public game: Game, public options: PlayerOptions) {
-    this.x = this.game.width + this.radius
-    this.y = this.game.height + this.radius
+    this.x = 10
+    this.y = 10
   }
 
   update({ x, y }: { x: number, y: number }) {

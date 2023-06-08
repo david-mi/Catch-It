@@ -10,11 +10,12 @@ export class Obstacle {
 
   constructor(public game: Game, public player: Player) {
     let isCircleColliding: null | Obstacle
+    const minObstaclesGap = player.diameter + 2
 
     do {
       this.x = Math.random() * (game.width - this.radius * 2) + this.radius
       this.y = Math.random() * (game.height - this.radius * 2) + this.radius
-      isCircleColliding = checkCircleCollision(this, game.obstacles, this.player.diameter + 2)
+      isCircleColliding = checkCircleCollision(this, [...game.obstacles, player] as Obstacle[], minObstaclesGap)
     } while (isCircleColliding)
   }
 
