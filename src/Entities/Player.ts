@@ -19,8 +19,8 @@ export class Player {
   }
 
   update({ x, y }: { x: number, y: number }) {
-    this.x = x
-    this.y = y
+    this.x += x
+    this.y += y
   }
 
   handleCollision(targets: Obstacle[]) {
